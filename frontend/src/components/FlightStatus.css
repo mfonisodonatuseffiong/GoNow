@@ -1,0 +1,6 @@
+/* FlightStatus.css */
+.flight-status-page {
+    min-height: 40vh;  /* Ensures the page takes full height */
+    color: black;       /* Ensures text is black */
+  }
+  

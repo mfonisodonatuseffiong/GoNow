@@ -1,0 +1,45 @@
+/* src/styles/custom.css */
+body {  
+    background-size: cover;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(255, 208, 0);
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    padding: 20px;
+  }
+  
+  /* Carousel Background Styling */
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Ensure it stays behind other content */
+}
+
+.carousel-container .slick-slide {
+    width: 100%;
+    height: 100vh; /* Full-screen height */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Style for the default content overlay */
+body {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: rgb(234, 251, 252);
+    padding: 1px;
+    position: relative;
+    z-index: 1; /* Ensures it's above the carousel */
+}

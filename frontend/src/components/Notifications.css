@@ -1,0 +1,21 @@
+/* Notifications.css */
+.notifications-page {
+    min-height: 100vh;  /* Ensures the page takes full height */
+    color: black;       /* Ensures text is black */
+    display: flex;      /* Flexbox for centering */
+    flex-direction: column; /* Stacks content vertically */
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+    text-align: center;  /* Centers the text within elements */
+  }
+  
+  h2 {
+    font-size: 2rem; /* You can adjust the font size */
+  }
+  
+  .alert {
+    width: 80%; /* Adjust width as necessary */
+    max-width: 600px; /* Limits the width */
+    margin: 10px 0;
+  }
+  

@@ -1,0 +1,41 @@
+/* AdminDashboard.css */
+
+/* Ensure the container takes the full height of the viewport */
+body, html {
+    height: 50%;
+    margin: 0;
+  }
+  
+  .container {
+    min-height: 100vh;  /* Make sure the container stretches to full viewport height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Flexbox layout for the card bodies */
+  .card-body-custom {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-body-custom .btn {
+    margin-top: auto; /* Ensures the button is always at the bottom */
+  }
+  
+  /* Minimum height for all cards */
+  .card-body {
+    min-height: 100px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute content within the card */
+  }
+  
+  .row {
+    flex-grow: 1; /* Allow the row to take remaining space */
+  }
+  
+  .card {
+    height: 100%; /* Ensures each card takes the full height available */
+  }
+  

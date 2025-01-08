@@ -1,0 +1,28 @@
+.dancing-text {
+    animation: flash 5s steps(5, start) infinite, dance 5s infinite alternate;
+  }
+  
+  @keyframes flash {
+    0%, 100% {
+      opacity: 1;
+    }
+    20%, 40%, 60%, 80% {
+      opacity: 0;
+    }
+    10%, 30%, 50%, 70% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes dance {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
