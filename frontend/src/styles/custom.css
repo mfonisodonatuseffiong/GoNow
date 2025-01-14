@@ -1,45 +1,55 @@
 /* src/styles/custom.css */
-body {  
+
+/* General body styling */
+body {
     background-size: cover;
-    color: #fff;
+    background-color: #f5f5dc; /* Soft beige tone, matching the footer */
+    color: #333; /* Dark neutral for better readability */
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(255, 208, 0);
-  }
-  .container {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 1px;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
   }
   
-  /* Carousel Background Styling */
-.carousel-container {
+  /* Container styling */
+  .container {
+    background: white; /* Slightly opaque for better focus */
+    border-radius: 8px; /* Rounded corners for modern design */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  /* Carousel background styling */
+  .carousel-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 1; /* Ensure it stays behind other content */
-}
-
-.carousel-container .slick-slide {
+    z-index: 1; /* Keep it behind the main content */
+  }
+  
+  .carousel-container .slick-slide {
     width: 100%;
     height: 100vh; /* Full-screen height */
     background-size: cover;
     background-position: center;
-}
-
-/* Style for the default content overlay */
-body {
-    color: #fff;
+    filter: brightness(90%); /* Slight dimming for overlay emphasis */
+  }
+  
+  /* Default content overlay styling */
+  body {
+    color: #2e3138; /* Neutral dark gray for improved contrast */
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    background: rgb(234, 251, 252);
-    padding: 1px;
+  }
+  
+  /* Updated container styling */
+  .container {
+    background: white; /* Light pastel blue to complement the soft beige background */
+    padding: 20px; /* Consistent spacing for content */
+    border-radius: 10px; /* Rounded edges for a polished appearance */
     position: relative;
-    z-index: 1; /* Ensures it's above the carousel */
-}
+    z-index: 1; /* Ensure it's above the carousel */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly enhanced shadow for prominence */
+  }
+  

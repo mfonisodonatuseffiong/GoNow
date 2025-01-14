@@ -13,6 +13,7 @@ import Signup from './components/Signup';
 import Explore from './components/Explore';
 import TransactionHistory from './components/TransactionHistory';
 import BookingForm from './components/BookingForm'; // Correctly imported BookingForm
+import BookingConfirmation from './components/BookingConfirmation'; // Import BookingConfirmation
 import FlightReservation from './components/FlightReservation';
 import FlightSchedules from './components/FlightSchedules';
 import TicketManagement from './components/TicketManagement';
@@ -60,6 +61,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/transaction-history" element={<TransactionHistory />} />
           <Route path="/booking-form" element={<BookingForm />} /> {/* Corrected route for BookingForm */}
+          <Route path="/booking-confirmation" element={<BookingConfirmation />} /> {/* Added route for BookingConfirmation */}
           <Route path="/flight-reservation" element={<FlightReservation />} />
           <Route path="/flight-schedules" element={<FlightSchedules />} />
           <Route path="/ticket-management" element={<TicketManagement />} />

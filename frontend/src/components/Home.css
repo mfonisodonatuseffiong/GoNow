@@ -18,7 +18,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #dde1a0; /* Overlay to darken the background */
+  background-color: white; /* Light pastel overlay for a calming effect */
   z-index: 1;
 }
 
@@ -34,21 +34,23 @@
   margin-bottom: 20px;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 4px solid #fff; /* Cursor-like effect */
+  border-right: 4px solid #ff6f61; /* Cursor-like effect with a vibrant accent */
   animation: typeEffect 4s steps(40) 1s forwards; /* Typing effect animation */
 }
 
 .hero-content p {
   font-size: 1.5rem;
   margin-bottom: 30px;
+  color: #2e3138; /* Subtle contrast for better readability */
 }
 
 .flight-search-form {
   display: grid;
   gap: 15px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for emphasis */
   padding: 20px;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add depth to the form */
 }
 
 .flight-search-form .form-group {
@@ -61,19 +63,27 @@
 .flight-search-form button {
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   border-radius: 5px;
 }
 
+.flight-search-form input:focus,
+.flight-search-form select:focus {
+  outline: none;
+  border-color: #007bff; /* Focus color matches button for consistency */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
 .flight-search-form button {
-  background-color: #007bff;
+  background-color: #007bff; /* Primary button color */
   color: white;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .flight-search-form button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
 /* Typing animation keyframes */

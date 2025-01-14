@@ -1,30 +1,58 @@
+/* Footer.css */
+
 /* Footer container styling */
 .footer-container {
-    background-color: #ffc107;  /* Use the 'warning' yellow color */
-    color: #343a40;
-    padding: 30px 0;
-    margin-top: 50px; /* Add margin-top to separate the footer from the main content */
+    background-color: #17a2b8;  /* Info color to match the navbar */
+    color: #343a40;  /* Dark text for contrast */
+    padding: 20px 0;  /* Reduced padding to reduce height */
+    margin-top: 30px;  /* Reduced margin-top */
     transition: all 0.3s ease-in-out;
   }
   
   .footer-container a {
-    color: #343a40;
+    color: #343a40;  /* Dark text for links */
     text-decoration: none;
   }
   
   .footer-container a:hover {
-    color: #007bff;
-    transform: scale(1.1);
+    color: #007bff;  /* Blue hover effect for links */
+    transform: scale(1.1);  /* Slight scale effect on hover */
+  }
+  
+  /* Center align the content */
+  .footer-container .text-center {
+    text-align: center;
+  }
+  
+  /* Add underline effect to all links in the footer */
+  .footer-link {
+    position: relative;
+  }
+  
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #007bff;  /* Blue underline effect */
+    transition: width 0.3s, left 0.3s;
+  }
+  
+  .footer-link:hover::after {
+    width: 100%;
+    left: 0;
   }
   
   .footer-container h5 {
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 10px;  /* Reduced margin-bottom */
   }
   
   .footer-container .social-icons a:hover {
-    transform: translateY(-5px);
-    color: #007bff;
+    transform: translateY(-5px);  /* Slight upward movement for social icons on hover */
+    color: #007bff;  /* Blue hover effect for social icons */
   }
   
   .payment-options img {
@@ -32,17 +60,24 @@
   }
   
   .payment-options img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1);  /* Slight scale effect for payment option icons */
   }
   
   .footer-bottom {
-    border-top: 1px solid #e0e0e0;
-    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;  /* Light border for separation */
+    padding-top: 10px;  /* Reduced padding-top */
+    background-color: rgb(228, 76, 76)/* Info color for the footer bottom */
   }
   
   .footer-bottom p {
     margin-bottom: 0;
     font-size: 14px;
-    color: #777;
+    color: #ffffff;  /* White color for the text */
+  }
+  
+  /* Reduce the height of the footer card-body */
+  .footer-container .card-body {
+    padding: 5px;  /* Adjust padding to reduce height */
+    margin: 5px;    /* Adjust margin if needed */
   }
   

@@ -1,0 +1,51 @@
+/* Navbar.css */
+
+/* General nav-link hover style for smooth transitions */
+.nav-link {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #fff; /* Change this to the desired color */
+    transition: width 0.3s, left 0.3s;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  /* Ensure the underline effect works on smaller screens */
+  @media (max-width: 992px) {
+    .nav-link {
+      display: block;
+      text-align: center;
+    }
+  
+    .nav-link::after {
+      left: 0;
+    }
+  }
+  
+  /* General dropdown item hover style for mobile view */
+  @media (max-width: 767px) {
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #6c757d; /* Secondary color */
+      color: #fff;
+    }
+  }
+  
+  /* Specific styles for Services dropdown */
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #6c757d; /* Secondary color */
+    color: #fff;
+  }
+  

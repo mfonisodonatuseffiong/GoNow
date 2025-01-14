@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import FlightSearchResults from './FlightSearchResults';
-import { searchFlights } from '../api';  // Correct import path
 
 const FlightSearch = () => {
   const [searchParams, setSearchParams] = useState({
@@ -21,6 +20,25 @@ const FlightSearch = () => {
       ...prevParams,
       [name]: value,
     }));
+  };
+
+  const handleLocationSearch = async (keyword, fieldName) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/flights-api/locations`, {
+        params: { keyword },
+      });
+      const data = response.data;
+
+      // If a user selects a location, update the searchParams
+      if (data.length > 0 && fieldName) {
+        setSearchParams((prevParams) => ({
+          ...prevParams,
+          [fieldName]: data[0].iataCode, // Select the IATA code of the first matching location
+        }));
+      }
+    } catch (error) {
+      console.error('Error fetching locations:', error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -52,9 +70,6 @@ const FlightSearch = () => {
 
         console.log('Extracted Flights:', extractedFlights);
         setFlights(extractedFlights);
-
-        // Store search results in the database
-        await searchFlights(1, response.data);  // Replace 1 with actual user ID if available
       } else {
         setFlights([]);
         setError('No flights found for the given parameters.');
@@ -92,6 +107,7 @@ const FlightSearch = () => {
             name="origin"
             value={searchParams.origin}
             onChange={handleInputChange}
+            onBlur={(e) => handleLocationSearch(e.target.value, 'origin')}
             required
             style={{
               width: '100%',
@@ -110,6 +126,7 @@ const FlightSearch = () => {
             name="destination"
             value={searchParams.destination}
             onChange={handleInputChange}
+            onBlur={(e) => handleLocationSearch(e.target.value, 'destination')}
             required
             style={{
               width: '100%',

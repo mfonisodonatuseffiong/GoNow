@@ -1,4 +1,5 @@
 import React from 'react';
+import './Footer.css'; // Ensure CSS is imported correctly
 
 const Footer = () => {
   const quickLinks = [
@@ -23,17 +24,17 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-warning text-dark py-2 mt-auto" style={{ marginTop: '20px' }}>
-      <div className="container">
+    <footer className="footer-container">
+      <div className="container text-center">
         {/* Main Footer Content */}
-        <div className="row">
+        <div className="row justify-content-center">
           {/* Quick Links */}
-          <div className="col-md-3 mb-3">
+          <div className="col-md-3 mb-2">
             <h5>Quick Links</h5>
             <ul className="list-unstyled">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-dark" style={{ textDecoration: 'none' }}>
+                  <a href={link.href} className="footer-link">
                     {link.label}
                   </a>
                 </li>
@@ -42,25 +43,24 @@ const Footer = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="col-md-3 mb-3">
+          <div className="col-md-3 mb-2">
             <h5>Contact</h5>
-            <p>Email: <a href="mailto:info@gonow.com" className="text-dark" style={{ textDecoration: 'none' }}>info@gonow.com</a></p>
-            <p>Phone: <a href="tel:+2348068199955" className="text-dark" style={{ textDecoration: 'none' }}>+2348068199955</a></p>
+            <p>Email: <a href="mailto:info@gonow.com" className="footer-link">info@gonow.com</a></p>
+            <p>Phone: <a href="tel:+2348068199900" className="footer-link">+2348068199900</a></p>
             <p>Address: 5 Cosmos Close, Uyo, Nigeria</p>
           </div>
 
           {/* Social Media Links */}
-          <div className="col-md-3 mb-3">
+          <div className="col-md-3 mb-2">
             <h5>Follow Us</h5>
             <ul className="list-unstyled">
               {socialLinks.map((social, index) => (
                 <li key={index}>
                   <a
                     href={social.href}
-                    className="text-dark"
+                    className="footer-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: 'none' }}
                   >
                     {social.label}
                   </a>
@@ -70,13 +70,12 @@ const Footer = () => {
           </div>
 
           {/* App Download Section */}
-          <div className="col-md-3 mb-3">
+          <div className="col-md-3 mb-2">
             <h5>Download Our App</h5>
             <a
               href="https://play.google.com/store/apps/details?id=com.gonow"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: 'none' }}
             >
               <img
                 src="/images/playstore.png"
@@ -88,10 +87,10 @@ const Footer = () => {
         </div>
 
         {/* Payment Options */}
-        <div className="row justify-content-center py-2">
+        <div className="row justify-content-center py-1">
           <div className="col-md-6 text-center">
-            <h5 className="mb-2">Secure Payment Options</h5>
-            <div className="d-flex justify-content-center gap-3">
+            <h5 className="mb-1">Secure Payment Options</h5>
+            <div className="d-flex justify-content-center gap-2 payment-options">
               {paymentOptions.map((option, index) => (
                 <img
                   key={index}
@@ -106,9 +105,9 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="row border-top pt-2">
-          <div className="col text-center">
-            <p className="mb-0 text-warning">
+        <div className="row footer-bottom">
+          <div className="col text-center bg-dark">
+            <p className="mb-0 text-white">
               &copy; 2025 <strong>GoNow</strong>. All rights reserved.
             </p>
           </div>

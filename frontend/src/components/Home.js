@@ -3,67 +3,65 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
-
+  
   // State for the typing effect
   const [welcomeText, setWelcomeText] = useState('');
   const fullText = 'Welcome to GoNow';
-
+  
   // Form state
   const [departureAirport, setDepartureAirport] = useState('');
   const [destinationAirport, setDestinationAirport] = useState('');
   const [departureDate, setDepartureDate] = useState('');
-
+  
   useEffect(() => {
     let index = 0;
     const typingInterval = setInterval(() => {
       setWelcomeText(fullText.slice(0, index + 1));
       index++;
       if (index >= fullText.length) {
-        clearInterval(typingInterval);
+        index = 0; // Reset index to create continuous typing effect
       }
     }, 150);
     return () => clearInterval(typingInterval);
   }, [fullText]);
-
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    navigate('/flight-search', {
-      state: { departureAirport, destinationAirport, departureDate }
+    navigate('/flight-search', { 
+      state: { departureAirport, destinationAirport, departureDate }, 
     });
   };
-
+  
   return (
     <div>
-      {/* Hero Section */}
-      <div
-        className="container-fluid text-white p-5"
-        style={{ 
-          backgroundImage: "url('/images/plane.gif')", 
-          backgroundSize: 'cover', 
-          backgroundPosition: 'center', 
-          minHeight: '30vh' 
-        }}
-      >
-        <div className="row align-items-center justify-content-center" style={{ minHeight: '50vh' }}>
-          <div className="col-md-8 text-center">
-            <div className="card text-white shadow-lg" style={{ backgroundColor: '#BFDFBC', opacity: 0.8 }}>
-              <div className="card-body p-5">
-                <img
-                  src="/images/deal.jpg"
-                  className="img-fluid mb-1"
-                  alt="GoNow Hero"
-                  style={{ maxHeight: '100px', objectFit: 'cover', width: '30%', borderRadius: '5px' }}
-                />
-                <h1 className="card-title mb-4 display-4">{welcomeText}</h1>
-                <p className="card-text lead mb-4">Discover the best flights at unbeatable prices. Your journey begins here!</p>
-                <div className="d-flex justify-content-center gap-3">
-                  <button className="btn btn-warning btn-lg" onClick={() => navigate('/explore')}>Explore Flights</button>
-                </div>
+    {/* Hero Section */}
+<div className="container-fluid text-white p-5" style={{ backgroundImage: "url('/images/plane3.gif')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '30vh', backgroundColor: '#003580', backgroundAttachment: 'fixed' }}>
+  <div className="row align-items-center justify-content-center" style={{ minHeight: '50vh' }}>
+    <div className="col-md-8 text-center">
+      <div className="card text-white shadow-lg" style={{ backgroundColor: '#00509E', opacity: 0.9 }}>
+        <div className="card-body p-5">
+          <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img src="/images/deal.jpg" className="img-fluid mb-1" alt="GoNow Hero" style={{ maxHeight: '100px', objectFit: 'cover', width: '30%', borderRadius: '5px' }} />
               </div>
+              <div className="carousel-item">
+                <img src="/images/plane3.gif" className="img-fluid mb-1" alt="Plane Gif" style={{ maxHeight: '100px', objectFit: 'cover', width: '30%', borderRadius: '5px' }} />
+              </div>
+              {/* Add more carousel items here if needed */}
             </div>
+          </div>
+          <h1 className="card-title mb-4 display-4">{welcomeText}</h1>
+          <p className="card-text lead mb-4">Discover the best flights at unbeatable prices. Your journey begins here!</p>
+          <div className="d-flex justify-content-center gap-3">
+            <button className="btn btn-info btn-lg hover" onClick={() => navigate('/explore')}>Explore Flights</button>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
 
       {/* Promotions and Deals Section */}
       <div className="container py-4 mt-5">
@@ -90,17 +88,12 @@ function Home() {
             },
           ].map((deal, index) => (
             <div className="col-md-4 mb-5" key={index}>
-              <div className="card" style={{ height: '350px' }}>
-                <img
-                  src={deal.imgSrc}
-                  className="card-img-top"
-                  alt={deal.title}
-                  style={{ maxHeight: '180px', objectFit: 'cover' }}
-                />
+              <div className="card shadow-sm" style={{ height: '350px', borderColor: '#FFCC00' }}>
+                <img src={deal.imgSrc} className="card-img-top" alt={deal.title} style={{ maxHeight: '180px', objectFit: 'cover' }} />
                 <div className="card-body">
-                  <h5 className="card-title">{deal.title}</h5>
-                  <p className="card-text">{deal.text}</p>
-                  <button className="btn btn-warning" onClick={() => navigate('/check-deals')}>{deal.buttonText}</button>
+                  <h5 className="card-title text-dark">{deal.title}</h5>
+                  <p className="card-text text-muted">{deal.text}</p>
+                  <button className="btn btn-info hover" onClick={() => navigate('/check-deals')}>{deal.buttonText}</button>
                 </div>
               </div>
             </div>
@@ -130,16 +123,45 @@ function Home() {
             },
           ].map((feature, index) => (
             <div className="col-md-4 mb-4" key={index}>
-              <div className="card text-center" style={{ height: '350px' }}>
+              <div className="card text-center shadow-sm" style={{ height: '350px', borderColor: '#00509E' }}>
                 <div className="card-body">
-                  <img
-                    src={feature.imgSrc}
-                    className="card-img-top"
-                    alt={feature.title}
-                    style={{ maxHeight: '150px', objectFit: 'cover' }}
-                  />
-                  <h5 className="card-title mt-3">{feature.title}</h5>
-                  <p className="card-text">{feature.text}</p>
+                  <img src={feature.imgSrc} className="card-img-top" alt={feature.title} style={{ maxHeight: '150px', objectFit: 'cover' }} />
+                  <h5 className="card-title mt-3 text-dark">{feature.title}</h5>
+                  <p className="card-text text-muted">{feature.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="container py-4">
+        <h2 className="text-center text-primary mb-4">Testimonials</h2>
+        <div className="row">
+          {[
+            {
+              name: 'Jane Doe',
+              imgSrc: '/images/staff.jpg',
+              text: 'Booking with GoNow was a seamless experience. I found the best deals and had a wonderful trip!',
+            },
+            {
+              name: 'John Smith',
+              imgSrc: '/images/staff2.jpg',
+              text: 'The 24/7 customer support was a lifesaver. Highly recommend GoNow for all your travel needs!',
+            },
+            {
+              name: 'Emily Johnson',
+              imgSrc: '/images/staff3.jpg',
+              text: 'Great prices, easy booking process, and fantastic customer service. GoNow exceeded my expectations!',
+            },
+          ].map((testimonial, index) => (
+            <div className="col-md-4 mb-4" key={index}>
+              <div className="card text-center shadow-sm">
+                <img src={testimonial.imgSrc} className="card-img-top" alt={testimonial.name} style={{ maxHeight: '150px', objectFit: 'cover', borderRadius: '50%', width: '50%', margin: '0 auto' }} />
+                <div className="card-body">
+                  <h5 className="card-title mt-3 text-da">{testimonial.name}</h5>
+                  <p className="card-text text-muted">"{testimonial.text}"</p>
                 </div>
               </div>
             </div>
@@ -155,25 +177,37 @@ function Home() {
             <form onSubmit={handleFormSubmit}>
               <div className="row">
                 {[
-                  { id: 'departureAirport', label: 'Origin:', placeholder: 'Enter departure airport', type: 'text', value: departureAirport, onChange: (e) => setDepartureAirport(e.target.value) },
-                  { id: 'destinationAirport', label: 'Destination:', placeholder: 'Enter destination airport', type: 'text', value: destinationAirport, onChange: (e) => setDestinationAirport(e.target.value) },
-                  { id: 'departureDate', label: 'Departure Date:', type: 'date', value: departureDate, onChange: (e) => setDepartureDate(e.target.value) },
+                  {
+                    id: 'departureAirport',
+                    label: 'Origin:',
+                    placeholder: 'Enter departure airport',
+                    type: 'text',
+                    value: departureAirport,
+                    onChange: (e) => setDepartureAirport(e.target.value),
+                  },
+                  {
+                    id: 'destinationAirport',
+                    label: 'Destination:',
+                    placeholder: 'Enter destination airport',
+                    type: 'text',
+                    value: destinationAirport,
+                    onChange: (e) => setDestinationAirport(e.target.value),
+                  },
+                  {
+                    id: 'departureDate',
+                    label: 'Departure Date:',
+                    type: 'date',
+                    value: departureDate,
+                    onChange: (e) => setDepartureDate(e.target.value),
+                  },
                 ].map((field, index) => (
                   <div className="col-md-4 mb-3" key={index}>
                     <label htmlFor={field.id} className="form-label">{field.label}</label>
-                    <input
-                      type={field.type}
-                      className="form-control"
-                      id={field.id}
-                      placeholder={field.placeholder}
-                      min={field.min}
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
+                    <input type={field.type} className="form-control" id={field.id} placeholder={field.placeholder} value={field.value} onChange={field.onChange} />
                   </div>
                 ))}
               </div>
-              <button type="submit" className="btn btn-primary btn-lg w-100">Search</button>
+              <button type="submit" className="btn btn-info btn-lg w-100 hover">Search</button>
             </form>
           </div>
         </div>

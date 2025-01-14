@@ -66,4 +66,46 @@ router.get('/real-time-flights', ensureAccessToken, async (req, res) => {
   }
 });
 
+// Flight booking route
+router.post('/booking/flight-orders', ensureAccessToken, async (req, res) => {
+  const { flightOffer } = req.body;
+  console.log('Flight booking request:', flightOffer);
+
+  try {
+    const response = await axios.post('https://test.api.amadeus.com/v1/booking/flight-orders', flightOffer, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('Flight booking response:', response.data);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error booking flight:', error.response?.data);
+    res.status(500).json({ error: 'Error booking flight: ' + (error.response?.data.detail || error.message) });
+  }
+});
+
+// Confirm price order route
+router.post('/shopping/flight-orders/pricing', ensureAccessToken, async (req, res) => {
+  const { priceOrder } = req.body;
+  console.log('Price order confirmation request:', priceOrder);
+
+  try {
+    const response = await axios.post('https://test.api.amadeus.com/v1/shopping/flight-orders/pricing', priceOrder, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('Price order confirmation response:', response.data);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error confirming price order:', error.response?.data);
+    res.status(500).json({ error: 'Error confirming price order: ' + (error.response?.data.detail || error.message) });
+  }
+});
+
 module.exports = { generateAccessToken, ensureAccessToken, router };

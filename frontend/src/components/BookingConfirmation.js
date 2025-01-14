@@ -1,31 +1,29 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './BookingForm.css'; // You can use the same CSS file for styling
 
-function BookingConfirmation() {
+const BookingConfirmation = () => {
   const location = useLocation();
-  const bookingDetails = location.state;
+  const navigate = useNavigate();
+  const flightDetails = location.state?.flightDetails || [];
+
+  const handleProceedToPayment = () => {
+    navigate('/payment', { state: { flightDetails } });
+  };
 
   return (
-    <div className="container mt-5 text-dark">
-      <h1 className="text-center text-info mb-4">Booking Confirmation</h1>
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">Thank you for your booking, {bookingDetails.name}!</h5>
-          <p className="card-text">
-            Your booking details:
-            <ul>
-              <li>Flight ID: {bookingDetails.flightId}</li>
-              <li>Email: {bookingDetails.email}</li>
-              <li>Phone: {bookingDetails.phone}</li>
-              <li>Seat Preference: {bookingDetails.seatPreference}</li>
-              <li>Meal Preference: {bookingDetails.mealPreference}</li>
-              <li>Class: {bookingDetails.flightClass}</li>
-            </ul>
-          </p>
+    <div className="booking-form">
+      <h2 className="dancing-text">Booking Confirmation</h2>
+      {flightDetails.length > 0 && (
+        <div className="flight-details">
+          <h3>Flight Details</h3>
+          <p>Price: {flightDetails[0].flightOffers[0].price.total} {flightDetails[0].flightOffers[0].price.currency}</p>
+          {/* Add more flight details as needed */}
         </div>
-      </div>
+      )}
+      <button onClick={handleProceedToPayment}>Proceed to Payment</button>
     </div>
   );
-}
+};
 
 export default BookingConfirmation;

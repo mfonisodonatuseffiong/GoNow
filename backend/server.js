@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
-const axios = require('axios'); // For Amadeus API integration
+const nodemailer = require('nodemailer');
 const flightAPI = require('./routes/flightAPI');
 const flightBooking = require('./routes/flightBooking');
 const contactRoutes = require('./routes/contactRoutes');
@@ -12,7 +12,6 @@ const userRoutes = require('./routes/userRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const flightRoutes = require('./routes/flightRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
-const nodemailer = require('nodemailer'); // Import nodemailer
 
 dotenv.config();
 
@@ -30,32 +29,31 @@ app.use(express.json());
 
 // API Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/booking', flightBooking);
+app.use('/api/booking', flightBooking.router); // Ensure to use the router from flightBooking
 app.use('/api/users', userRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/flights', flightRoutes);
 app.use('/api/admin/settings', settingsRoutes);
-app.use('/api/flights-api', flightAPI.router);
+app.use('/api/flights-api', flightAPI.router); // Ensure to use the router from flightAPI
 app.use('/api/contact', contactRoutes);
 
 // Send email route
 app.post('/api/send-email', async (req, res) => {
   const { recipient, subject, body } = req.body;
 
-  // Create a transporter using Gmail
   const transporter = nodemailer.createTransport({
-    service: 'gmail', // Use Gmail as the email service provider
+    service: 'gmail',
     auth: {
-      user: 'kaytwobaba@gmail.com', // Your email address
-      pass: 'icvlrpviamkrbjqu', // Your Google app-specific password
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: 'kaytwobaba@gmail.com', // Sender address
-    to: recipient, // Recipient email address
-    subject: subject, // Subject line
-    text: body, // Email body
+    from: process.env.EMAIL_USER,
+    to: recipient,
+    subject: subject,
+    text: body,
   };
 
   try {

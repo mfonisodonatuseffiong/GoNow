@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css'; // Import the CSS file for styles
 
 function Navbar({ isAdmin }) {
     const [searchQuery, setSearchQuery] = useState('');
@@ -28,10 +29,6 @@ function Navbar({ isAdmin }) {
         }
     };
 
-    const handleFlightBookingClick = () => {
-        navigate('/booking-form', { state: { message: 'No flight selected. Please select a flight to proceed with booking.' } });
-    };
-
     const renderAdminMenu = () => (
         <li className="nav-item dropdown">
             <button className="nav-link dropdown-toggle btn btn-link bg-info" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -57,12 +54,18 @@ function Navbar({ isAdmin }) {
         </li>
     );
 
+    const handleFlightBooking = () => {
+        alert('Please go back and select a flight before proceeding to flight booking.');
+    };
+
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav className="navbar navbar-expand-lg navbar-light bg-info">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>GoNow</span>
-                    <div style={{ fontSize: '1rem', fontStyle: 'italic', color: '#fff' }}> .....Fast and Reliable </div>
+                    <div style={{ fontSize: '1rem', fontStyle: 'italic', color: '#fff' }}>
+                        .....Fast and Reliable
+                    </div>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -99,15 +102,15 @@ function Navbar({ isAdmin }) {
                                 <i className="bi bi-person-plus" style={{ marginRight: '10px' }}></i> Signup
                             </Link>
                         </li>
-                        <li className="nav-item dropdown bg-danger">
+                        <li className="nav-item dropdown bg-secondary">
                             <button className="nav-link dropdown-toggle btn btn-link" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <i className="bi bi-briefcase" style={{ marginRight: '10px' }}></i> Services
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
                                 <li>
-                                    <button className="dropdown-item" onClick={handleFlightBookingClick}>
+                                    <Link className="dropdown-item" to="/flight-booking" onClick={handleFlightBooking}>
                                         <i className="bi bi-airplane-engines" style={{ marginRight: '10px' }}></i> Flight Booking
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link className="dropdown-item" to="/flight-reservation">

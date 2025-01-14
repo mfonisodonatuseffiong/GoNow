@@ -10,12 +10,22 @@ const FlightSearchResults = ({ flights }) => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', backgroundColor: '#f0f8ff', padding: '20px', borderRadius: '8px' }}>
       <h2 style={{ color: 'red', animation: 'moveInOut 3s infinite' }}>Flight Search Results</h2>
       <ul style={{ color: 'black', listStyleType: 'none', padding: 0, textAlign: 'center' }}>
         {Array.isArray(flights) && flights.length > 0 ? flights.map((flight, index) => (
-          <li key={index} style={{ marginBottom: '20px', textAlign: 'center', border: '2px solid #ddd', padding: '10px', borderRadius: '8px', display: 'inline-block', width: '80%' }}>
-            <p>Flight ID: {flight.id}</p>
+          <li key={index} style={{ marginBottom: '20px', textAlign: 'center', border: '2px solid #ddd', padding: '10px', borderRadius: '8px', display: 'inline-block', width: '80%', backgroundColor: '#fff' }}>
+            <p style={{
+              backgroundColor: '#dc3545', // danger color
+              color: 'white',
+              padding: '10px',
+              borderRadius: '4px',
+              display: 'inline-block',
+              width: '30%', // reduced width
+              transition: 'background-color 0.9s'
+            }}>
+              Flight ID: {flight.id}
+            </p>
             <p>Last Ticketing Date: {flight.lastTicketingDate}</p>
             <p>Seats Available: {flight.numberOfBookableSeats}</p>
             <p>Price: {flight.price} {flight.currency}</p>
@@ -28,16 +38,16 @@ const FlightSearchResults = ({ flights }) => {
                 display: 'block',
                 marginTop: '10px',
                 padding: '10px',
-                backgroundColor: '#007bff',
+                backgroundColor: '#17a2b8', // info color
                 color: 'white',
                 border: 'none',
                 borderRadius: '4px',
                 cursor: 'pointer',
-                width: '100%',
+                width: '100%', // reduced width
                 transition: 'background-color 0.3s'
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#007bff'}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#117a8b'} // darken info color on hover
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#17a2b8'} // info color
             >
               Book Now
             </button>
