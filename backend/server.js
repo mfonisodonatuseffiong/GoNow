@@ -12,6 +12,8 @@ const userRoutes = require('./routes/userRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const flightRoutes = require('./routes/flightRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
+const sendEmail = require('./sendEmail'); // Import sendEmail utility
+const db = require('./models'); // Import db
 
 dotenv.config();
 
@@ -37,31 +39,27 @@ app.use('/api/admin/settings', settingsRoutes);
 app.use('/api/flights-api', flightAPI.router); // Ensure to use the router from flightAPI
 app.use('/api/contact', contactRoutes);
 
-// Send email route
-app.post('/api/send-email', async (req, res) => {
-  const { recipient, subject, body } = req.body;
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: recipient,
-    subject: subject,
-    text: body,
-  };
+// Booking confirmation route
+app.post('/api/bookings/confirm', async (req, res) => {
+  const { userId, bookingDetails } = req.body;
 
   try {
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ message: 'Email sent successfully!' });
+    // Save booking details to database (assuming you have a Booking model)
+    const booking = await db.Booking.create(bookingDetails);
+
+    // Find the user (assuming you have a User model)
+    const user = await db.User.findByPk(userId);
+
+    // Send confirmation email
+    const userEmail = user.email;
+    sendEmail(userEmail, 'Booking Confirmation', 'Your booking has been confirmed. Thank you for choosing our service!');
+
+    // Update user loyalty points (assuming you have a function for this)
+    // updateUserLoyaltyPoints(userId, 10); // Award 10 points for example - Implement this function as needed
+
+    res.status(201).json({ message: 'Booking confirmed', booking });
   } catch (error) {
-    console.error('Error sending email:', error.message);
-    return res.status(500).json({ error: 'Failed to send email. Please try again.' });
+    res.status(500).json({ message: 'Error confirming booking', error });
   }
 });
 
@@ -77,6 +75,13 @@ app.get('*', (req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).json({ error: err.message || 'Something went wrong!' });
+});
+
+// Ensure the database is synchronized
+db.sequelize.sync().then(() => {
+  console.log('Database synchronized');
+}).catch((err) => {
+  console.error('Error synchronizing database:', err);
 });
 
 // Start server

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { checkAdmin } = require('../middlewares/authMiddleware'); // Middleware for admin verification
+const { checkAdmin } = require('../middleware/authMiddleware'); // Middleware for admin verification
 const db = require('../config/database'); // PostgreSQL database connection
 
 // Get all settings

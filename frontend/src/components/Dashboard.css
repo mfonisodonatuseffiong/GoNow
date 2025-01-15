@@ -53,6 +53,33 @@
   background-color: #c9302c;
 }
 
+.booking-history {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.booking-history h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.booking-history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.booking-history li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.loading-text {
+  font-size: 18px;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .dashboard-card {
     width: 80%;

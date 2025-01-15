@@ -24,18 +24,42 @@ const BookingForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const getNewAccessToken = async () => {
     try {
-      const authResponse = await axios.post('https://test.api.amadeus.com/v1/security/oauth2/token', {
-        grant_type: 'client_credentials',
-        client_id: 'V8ihM6ZnbsC4czlL0P9CSIi0592W1TLq',
-        client_secret: 'Ld3GTlA237BhEdf6'
-      }, {
+      const params = new URLSearchParams();
+      params.append('grant_type', 'client_credentials');
+      params.append('client_id', process.env.REACT_APP_AMADEUS_API_KEY);
+      params.append('client_secret', process.env.REACT_APP_AMADEUS_API_SECRET);
+
+      const authResponse = await axios.post('https://test.api.amadeus.com/v1/security/oauth2/token', params, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       });
 
       const accessToken = authResponse.data.access_token;
+      const expiresIn = authResponse.data.expires_in;
+      const expirationTime = Date.now() + expiresIn * 1000;
+
+      localStorage.setItem('amadeus_access_token', accessToken);
+      localStorage.setItem('amadeus_token_expiration', expirationTime);
+
+      return accessToken;
+    } catch (error) {
+      console.error('Error obtaining access token:', error);
+      throw new Error('Failed to obtain access token');
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let accessToken = localStorage.getItem('amadeus_access_token');
+      const expirationTime = localStorage.getItem('amadeus_token_expiration');
+
+      if (!accessToken || Date.now() >= expirationTime) {
+        accessToken = await getNewAccessToken();
+      }
+
+      console.log('Access Token:', accessToken);
 
       const searchResponse = await axios.post('https://test.api.amadeus.com/v2/shopping/flight-offers', {
         originDestinations: [
@@ -43,7 +67,7 @@ const BookingForm = () => {
             id: '1',
             originLocationCode: 'ATH',
             destinationLocationCode: 'JFK',
-            departureDateTimeRange: { date: '2025-01-14' }
+            departureDateTimeRange: { date: '2025-12-15' }
           }
         ],
         travelers: [{ id: '1', travelerType: 'ADULT' }],
@@ -67,6 +91,8 @@ const BookingForm = () => {
         }
       });
 
+      console.log('Search Response:', searchResponse.data);
+
       const flightOffer = searchResponse.data.data[0];
 
       const pricingResponse = await axios.post('https://test.api.amadeus.com/v1/shopping/flight-offers/pricing', {
@@ -81,6 +107,8 @@ const BookingForm = () => {
         }
       });
 
+      console.log('Pricing Response:', pricingResponse.data);
+
       setFlightDetails(pricingResponse.data.data);
       setConfirmationMessage('Booking confirmed! Proceeding to payment...');
       console.log('Flight booking successful:', pricingResponse.data);
@@ -89,7 +117,18 @@ const BookingForm = () => {
       navigate('/booking-confirmation', { state: { flightDetails: pricingResponse.data.data } });
 
     } catch (error) {
-      console.error('Error booking flight:', error);
+      if (error.response) {
+        // The request was made and the server responded with a status code that falls out of the range of 2xx
+        console.error('Error response data:', error.response.data);
+        console.error('Error response status:', error.response.status);
+        console.error('Error response headers:', error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('Error request:', error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error message:', error.message);
+      }
       setConfirmationMessage('There was an error processing your booking. Please try again.');
     }
   };
