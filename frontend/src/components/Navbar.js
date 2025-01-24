@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css'; // Import the CSS file for styles
 
@@ -148,16 +148,7 @@ function Navbar({ isAdmin }) {
                                     </Link>
                                 </li>
                                 <li><hr className="dropdown-divider" /></li>
-                                <li>
-                                    <Link className="dropdown-item text-white bg-success" to="/checkout">
-                                        <i className="bi bi-credit-card" style={{ marginRight: '10px' }}></i> Proceed to Checkout
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link className="dropdown-item text-white bg-success" to="/make-payment">
-                                        <i className="bi bi-credit-card" style={{ marginRight: '10px' }}></i> Make Payment
-                                    </Link>
-                                </li>
+                               
                                 <li><hr className="dropdown-divider" /></li>
                                 <li>
                                     <Link className="dropdown-item text-white bg-danger" to="/contact">

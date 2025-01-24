@@ -35,10 +35,10 @@ function Home() {
   return (
     <div>
     {/* Hero Section */}
-<div className="container-fluid text-white p-5" style={{ backgroundImage: "url('/images/plane3.gif')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '30vh', backgroundColor: '#003580', backgroundAttachment: 'fixed' }}>
+<div className="container-fluid text-white p-5" style={{ backgroundImage: "url('/images/plane5.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '30vh', backgroundColor: '#003580', backgroundAttachment: 'fixed' }}>
   <div className="row align-items-center justify-content-center" style={{ minHeight: '50vh' }}>
     <div className="col-md-8 text-center">
-      <div className="card text-white shadow-lg" style={{ backgroundColor: '#00509E', opacity: 0.9 }}>
+      <div className="card text-white shadow-lg" style={{ backgroundColor: '#00509E', opacity: 0.5 }}>
         <div className="card-body p-5">
           <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
             <div className="carousel-inner">
@@ -64,24 +64,24 @@ function Home() {
 
 
       {/* Promotions and Deals Section */}
-      <div className="container py-4 mt-5">
+      <div className="container py-4 mt-5 bg-info">
         <h2 className="text-center text-primary mb-5">Promotions and Deals</h2>
         <div className="row">
           {[
             {
-              imgSrc: '/images/topdeal.jpg',
+              imgSrc: '/images/topdeal2.png',
               title: 'Top Deals of the Day',
               text: 'Discover the best deals of the day with up to 50% off!',
               buttonText: 'Check Deals',
             },
             {
-              imgSrc: '/images/seasonaloffer.jpg',
+              imgSrc: '/images/seasonaloffer2.jpg',
               title: 'Seasonal Offers',
               text: 'Take advantage of our Summer Sale with amazing flight discounts!',
               buttonText: 'View Seasonal Offers',
             },
             {
-              imgSrc: '/images/flashsale.jpg',
+              imgSrc: '/images/flashsale2.jpg',
               title: 'Limited-Time Offers',
               text: 'Hurry, these deals won’t last long. Shop now!',
               buttonText: 'Shop Now',
@@ -102,7 +102,7 @@ function Home() {
       </div>
 
       {/* Features Section */}
-      <div className="container py-4">
+      <div className="container py-4 bg-info">
         <h2 className="text-center text-primary mb-3">Why Choose Us?</h2>
         <div className="row">
           {[
@@ -136,7 +136,7 @@ function Home() {
       </div>
 
       {/* Testimonials Section */}
-      <div className="container py-4">
+      <div className="container py-4 bg-info">
         <h2 className="text-center text-primary mb-4">Testimonials</h2>
         <div className="row">
           {[
@@ -170,7 +170,7 @@ function Home() {
       </div>
 
       {/* Flight Booking Form Section */}
-      <div className="container py-3">
+      <div className="container py-3 bg-info">
         <h2 className="text-center text-primary mb-4">Book Your Flight</h2>
         <div className="card shadow-lg">
           <div className="card-body">

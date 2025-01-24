@@ -1,6 +1,10 @@
-// models/user.js
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -15,11 +19,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    loyaltyPoints: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     }
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Booking, {
+      foreignKey: 'userId',
+      as: 'bookings'
+    });
+  };
 
   return User;
 };

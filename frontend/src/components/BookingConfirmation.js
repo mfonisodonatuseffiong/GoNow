@@ -1,27 +1,25 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './BookingForm.css'; // You can use the same CSS file for styling
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import './BookingConfirmation.css'; // Import the CSS file
 
 const BookingConfirmation = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const flightDetails = location.state?.flightDetails || [];
+  const location = useLocation();
+  const { bookingDetails } = location.state || {};
 
-  const handleProceedToPayment = () => {
-    navigate('/payment', { state: { flightDetails } });
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/payment', { state: { bookingDetails } });
+    }, 5000); // 5 seconds delay
+
+    return () => clearTimeout(timer); // Cleanup timeout on component unmount
+  }, [navigate, bookingDetails]);
 
   return (
-    <div className="booking-form">
-      <h2 className="dancing-text">Booking Confirmation</h2>
-      {flightDetails.length > 0 && (
-        <div className="flight-details">
-          <h3>Flight Details</h3>
-          <p>Price: {flightDetails[0].flightOffers[0].price.total} {flightDetails[0].flightOffers[0].price.currency}</p>
-          {/* Add more flight details as needed */}
-        </div>
-      )}
-      <button onClick={handleProceedToPayment}>Proceed to Payment</button>
+    <div className="container mt-5 text-center">
+      <h2>Booking Confirmed</h2>
+      <p>Your booking has been confirmed.</p>
+      <p>You will be redirected to the payment page shortly.</p>
     </div>
   );
 };

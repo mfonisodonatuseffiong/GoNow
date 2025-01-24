@@ -11,10 +11,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { href: "https://www.facebook.com", label: "Facebook" },
-    { href: "https://twitter.com", label: "Twitter" },
-    { href: "https://www.instagram.com", label: "Instagram" },
-    { href: "https://www.linkedin.com", label: "LinkedIn" },
+    { href: "https://twitter.com", icon: "fab fa-twitter", label: "Twitter" },
+    { href: "https://www.instagram.com", icon: "fab fa-instagram", label: "Instagram" },
+    { href: "https://www.linkedin.com", icon: "fab fa-linkedin", label: "LinkedIn" },
+    { href: "https://github.com/mfonisodonatuseffiong", icon: "fab fa-github", label: "GitHub" },
   ];
 
   const paymentOptions = [
@@ -62,7 +62,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {social.label}
+                    <i className={social.icon}></i> {social.label}
                   </a>
                 </li>
               ))}

@@ -1,0 +1,24 @@
+.container {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #007bff; /* Green color */
+    font-size: 3.5em;
+    font-weight: bold;
+  }
+  
+  p {
+    color: #333; /* Darker gray color */
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+  
+  .text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  

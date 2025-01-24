@@ -1,11 +1,10 @@
-/* BookingForm.css */
 .booking-form {
-  max-width: 600px;
+  max-width: 900px; /* Increased width */
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: #00BFFF;
 }
 
 .booking-form h2 {
@@ -14,7 +13,7 @@
 }
 
 .booking-form div {
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Reduced height */
 }
 
 .booking-form label {
@@ -35,13 +34,13 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #28a745;
+  background-color: #006eff;
   color: #fff;
   font-size: 16px;
 }
 
 .booking-form button:hover {
-  background-color: #218838;
+  background-color: #1599d6;
 }
 
 .flight-details {
